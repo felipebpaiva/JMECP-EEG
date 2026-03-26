@@ -16,7 +16,7 @@ eeglab;
 
 %% --- 1. Setup and Parameters ---
 disp('Setting up parameters...');
-ltrials = 5;       % length of trials in seconds
+ltrials = 3;       % length of trials in seconds
 nsec = 180;        % total number of seconds to be analyzed
 ntrials = floor(nsec/ltrials);
 resfreq = 100;     % frequency for resampling
@@ -103,7 +103,7 @@ parfor subi = sub2ana
         
         for comp2ana = 1:n_components
             % **MODIFIED**: Use alpha-filtered data for component time series
-            compts = evecs_sel(:,comp2ana)' * Rdata_m;
+            compts = evecs_sel(:,comp2ana)' * Sdata_m;
             
             compmap = evecs_sel(:,comp2ana)' * covS;
             
@@ -191,7 +191,7 @@ gamma = gamma(subjects_to_keep,:);
 selec_comps = selec_comps(subjects_to_keep);
 nsubj = length(origLabels);
 
-save('K:\JMECP_EEG_Analysis\results\RELAXv2\Preprocessed_GED_Graphs_5s_nofilt.mat', ...
+save('K:\JMECP_EEG_Analysis\results\RELAXv2\Preprocessed_GED_Graphs_3s_8to12hz.mat', ...
     'WC_TDA', 'ciPLV_global', 'alphamap', 'alphaPower', 'gamma', 'selec_comps', ...
     'nsubj', 'origLabels', 'subcode', 'Nroi', 'ntrials', 'EEG', 'baddata', 'ltrials', '-v7.3');
 
